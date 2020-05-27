@@ -6,11 +6,30 @@ const traverse = require('@babel/traverse').default;
 
 class Webpack {
   constructor(options = {}) {
-    const { entry, output } = options || {};
+    const { entry, output, resolve } = options || {};
     this.entry = entry;
     this.output = output;
+    this.resolve = resolve;
     this.options = options;
     this.modules = [];
+  }
+
+  readFile(filepath, startIndex = -1) {
+    const extensions = this.resolve.extensions || ['.js', '.json'];
+    let content = null;
+    let ext = '';
+    if (startIndex > -1 && startIndex + 1 < extensions.length) {
+      ext = extensions[startIndex] || '';
+    }
+    if (startIndex > -1 && !ext) {
+      return null;
+    }
+    try {
+      content = fs.readFileSync(`${filepath}${ext}`, 'utf-8');
+      return content;
+    } catch (err) {
+      return this.readFile(filepath, startIndex + 1);
+    }
   }
 
   parse(filepath) {
@@ -18,7 +37,12 @@ class Webpack {
       return null;
     }
     // 1. 读取文件内容
-    const content = fs.readFileSync(filepath, 'utf-8');
+    const content = this.readFile(filepath);
+
+    if (!content) {
+      return null;
+    }
+
     const parsedAst = parser.parse(content, {
       sourceType: 'module',
     });
@@ -63,6 +87,7 @@ class Webpack {
     (function (require, exports, code) {
       eval(code);
     })(nextRequire, exports, rcode[modulePath].code);
+    return exports;
   }
   require('${this.entry}')
 })(${rCode});
@@ -75,7 +100,7 @@ class Webpack {
       fs.mkdirSync(outPath);
     }
 
-    const writeStream = fs.createWriteStream(outputFile, { encoding: 'utf8' });
+    const writeStream = fs.createWriteStream(outputFile, { encoding: 'utf8', flags: 'w' });
     writeStream.write(bundleEntry, 'utf8', () => {
       console.log('打包构建完成')
     });
