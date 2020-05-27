@@ -1,5 +1,5 @@
-import a from './c/a';
-import b from './c/b';
+import a from './c/a.js';
+import b from './c/b.js';
 
 const str = '这里是简版webpack';
 const newStr = str.split('').reverse().join('');
