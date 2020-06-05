@@ -3,15 +3,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
-  mode: 'development',
+  // mode: 'development',
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: '[name].js',
   },
   resolveLoader: {
-    modules: ['node_modules', './cusom-loader'],
+    modules: ['node_modules', './custom-loader'],
   },
-  mode: 'development',
   module: {
     rules: [
       {
