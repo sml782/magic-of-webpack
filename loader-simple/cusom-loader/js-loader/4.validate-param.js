@@ -11,11 +11,11 @@ module.exports = function mL(source, map, meta) {
     type: 'object',
     properties: {
       total: {
-        // type: 'number',
+        type: 'number',
         // type: ['number', 'string'],
         // 错误描述
         // description: 'total 必须是个数字',
-        instanceof: 'Number'
+        // instanceof: 'Number'
       }
     },
     // 是否允许额外的属性
