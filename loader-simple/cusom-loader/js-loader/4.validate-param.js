@@ -1,4 +1,4 @@
-/**** 获得参数 ****/
+/**** 验证参数 ****/
 const loaderUtils = require('loader-utils');
 const validateOptions = require('schema-utils');
 
