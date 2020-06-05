@@ -1,6 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const PPPlugin = require('./custom-plugin/pp');
+
 module.exports = {
   entry: './src/index.js',
   // mode: 'development',
@@ -47,6 +49,7 @@ module.exports = {
       filename: 'index.html',
       inject: true,
     }),
+    new PPPlugin({ options: true }),
   ],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
