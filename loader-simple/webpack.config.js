@@ -18,7 +18,7 @@ module.exports = {
           {
             loader: 'js-loader/4.validate-param.js',
             options: {
-              total: 7,
+              total: '7',
             },
           },
           {
