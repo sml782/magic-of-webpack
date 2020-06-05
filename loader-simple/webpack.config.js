@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -10,6 +11,7 @@ module.exports = {
   resolveLoader: {
     modules: ['node_modules', './cusom-loader'],
   },
+  mode: 'development',
   module: {
     rules: [
       {
@@ -18,7 +20,7 @@ module.exports = {
           {
             loader: 'js-loader/4.validate-param.js',
             options: {
-              total: '7',
+              total: 7,
             },
           },
           {
@@ -33,8 +35,23 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: ['style-loader', 'lessLoader'],
+        use: [
+          'less-loader/3.style-loader.js',
+          'less-loader/1.less-loader.js',
+        ],
       },
     ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      filename: 'index.html',
+      inject: true,
+    }),
+  ],
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 9000
   },
 };

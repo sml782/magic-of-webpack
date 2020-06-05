@@ -16,7 +16,6 @@ module.exports = function mL(source, map, meta) {
   // 2. loader-utils
   // 此插件可解析字符串形式, ?title=666
   const options = loaderUtils.getOptions(this);
-  console.log(options);
   const title = options.title || '默认标题';
 
   const result = source.replace(/\{\{\s*title\s*\}\}/, title);

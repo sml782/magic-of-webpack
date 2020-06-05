@@ -38,7 +38,6 @@ module.exports = function mL(source, map, meta) {
     // }
   }
   const options = loaderUtils.getOptions(this);
-  console.log(options);
   validateOptions(schema, options, configuration);
   this.callback(null, source);
 }
