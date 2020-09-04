@@ -2,7 +2,7 @@
 
 const gulp = require('gulp');
 const babel = require('gulp-babel');
-function defaultTask(callback) {
+function defaultTask(done) {
   gulp
     .src('src/app.js') // 读取源文件
     .pipe(
@@ -10,7 +10,7 @@ function defaultTask(callback) {
         presets: ['@babel/preset-env'],
       })
     ).pipe(gulp.dest('dist')); // 写到dist里
-  callback();
+  done();
 }
 
 exports.default = defaultTask;
