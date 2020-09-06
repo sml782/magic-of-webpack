@@ -5,7 +5,7 @@
 
 'use strict';
 
-// const {SyncHook} = require('tapable');
+// const { SyncHook } = require('tapable');
 
 class SyncHook{
   constructor(){
