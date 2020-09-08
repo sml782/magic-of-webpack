@@ -14,7 +14,7 @@ module.exports = {
   mode: "development",
   devtool: false,
   context: process.cwd(),
-  //entry:'./src/index.js',
+  // entry:'./src/index.js',
   /*   
   entry: {
     page1: "./src/page1.js",
@@ -29,12 +29,12 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].[chunkhash].js",
     chunkFilename: "[name].[chunkhash].chunk.js",
-    //publicPath: "http://img.zhufengpeixun.cn/",
+    // publicPath: "http://img.zhufengpeixun.cn/",
   },
   optimization: {
     minimize: true,
     minimizer: [
-      //压缩JS
+      // 压缩JS
       /* new TerserPlugin({
         sourceMap: false,
         extractComments: false,
@@ -42,7 +42,7 @@ module.exports = {
       //压缩CSS
       new OptimizeCSSAssetsPlugin({}), */
     ],
-    //自动分割第三方模块和公共模块
+    // 自动分割第三方模块和公共模块
     /*  splitChunks: {
       chunks: "all", //默认作用于异步chunk，值为all/initial/async
       minSize: 0, //默认值是30kb,代码块的最小尺寸
@@ -66,7 +66,7 @@ module.exports = {
         },
       },
     }, */
-    //为了长期缓存保持运行时代码块是单独的文件
+    // 为了长期缓存保持运行时代码块是单独的文件
     /*  runtimeChunk: {
       name: (entrypoint) => `runtime-${entrypoint.name}`,
     }, */
@@ -141,13 +141,13 @@ module.exports = {
     new PurgecssPlugin({
       paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
     }),
-    //new UploadPlugin({}),
+    // new UploadPlugin({}),
     new BundleAnalyzerPlugin({
       analyzerMode: "disabled", // 不启动展示打包报告的http服务器
       generateStatsFile: true, // 是否生成stats.json文件
     }),
-    //new BundleAnalyzerPlugin(), // 使用默认配置
-    //默认配置的具体配置项
+    // new BundleAnalyzerPlugin(), // 使用默认配置
+    // 默认配置的具体配置项
     /*     
     new BundleAnalyzerPlugin({
       analyzerMode: 'server',
