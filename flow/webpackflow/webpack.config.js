@@ -1,6 +1,7 @@
 const path = require('path');
 const RunPlugin = require('./plugins/RunPlugin');
 const DonePlugin = require('./plugins/DonePlugin');
+
 module.exports = {
   context: process.cwd(), // 当前的根目录
   mode: 'development', // 工作模 式 是开发模 式

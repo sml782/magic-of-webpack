@@ -1,34 +1,35 @@
-const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const PurgecssPlugin = require("purgecss-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const UploadPlugin = require("./plugins/UploadPlugin");
-const {BundleAnalyzerPlugin} = require("webpack-bundle-analyzer")
-const glob = require("glob");
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const PurgecssPlugin = require('purgecss-webpack-plugin');
+// const TerserPlugin = require('terser-webpack-plugin');
+// const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const UploadPlugin = require('./plugins/UploadPlugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const glob = require('glob');
+
 const PATHS = {
-    src: path.join(__dirname, "src"),
+  src: path.join(__dirname, 'src'),
 };
 module.exports = {
-  mode: "development",
+  mode: 'development',
   devtool: false,
   context: process.cwd(),
   // entry:'./src/index.js',
-  /*   
+  /*
   entry: {
     page1: "./src/page1.js",
     page2: "./src/page2.js",
     page3: "./src/page3.js",
   }, */
   entry: {
-    main: "./src/index.js",
-    vender: ["lodash"],
+    main: './src/index.js',
+    vender: ['lodash'],
   },
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "[name].[chunkhash].js",
-    chunkFilename: "[name].[chunkhash].chunk.js",
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].[chunkhash].js',
+    chunkFilename: '[name].[chunkhash].chunk.js',
     // publicPath: "http://img.zhufengpeixun.cn/",
   },
   optimization: {
@@ -75,14 +76,14 @@ module.exports = {
     rules: [
       {
         test: /\.js/,
-        include: path.resolve(__dirname, "src"),
+        include: path.resolve(__dirname, 'src'),
         use: [
           {
-            loader: "babel-loader",
+            loader: 'babel-loader',
             options: {
               presets: [
-                ["@babel/preset-env", { modules: false }],
-                "@babel/preset-react",
+                ['@babel/preset-env', { modules: false }],
+                '@babel/preset-react',
               ],
             },
           },
@@ -90,21 +91,21 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        include: path.resolve(__dirname, "src"),
+        include: path.resolve(__dirname, 'src'),
         exclude: /node_modules/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
           },
-          "css-loader",
+          'css-loader',
         ],
       },
       {
         test: /\.(png|svg|jpg|gif|jpeg|ico)$/,
         use: [
-          "file-loader",
+          'file-loader',
           {
-            loader: "image-webpack-loader",
+            loader: 'image-webpack-loader',
             options: {
               mozjpeg: {
                 progressive: true,
@@ -114,7 +115,7 @@ module.exports = {
                 enabled: false,
               },
               pngquant: {
-                quality: "65-90",
+                quality: '65-90',
                 speed: 4,
               },
               gifsicle: {
@@ -132,23 +133,23 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       inject: true,
-      template: "./src/index.html"
-     // filename:'[name].[hash].html'
+      template: './src/index.html',
+      // filename:'[name].[hash].html'
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].[contenthash].css",
+      filename: '[name].[contenthash].css',
     }),
     new PurgecssPlugin({
       paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
     }),
     // new UploadPlugin({}),
     new BundleAnalyzerPlugin({
-      analyzerMode: "disabled", // 不启动展示打包报告的http服务器
+      analyzerMode: 'disabled', // 不启动展示打包报告的http服务器
       generateStatsFile: true, // 是否生成stats.json文件
     }),
     // new BundleAnalyzerPlugin(), // 使用默认配置
     // 默认配置的具体配置项
-    /*     
+    /*
     new BundleAnalyzerPlugin({
       analyzerMode: 'server',
       analyzerHost: '127.0.0.1',

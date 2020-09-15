@@ -5,14 +5,16 @@
 
 // const { SyncHook } = require('tapable');
 
-class SyncHook{
-  constructor(){
-    this.taps = []
+class SyncHook {
+  constructor() {
+    this.taps = [];
   }
-  tap(name, fn){
+
+  tap(name, fn) {
     this.taps.push(fn);
   }
-  call(){
+
+  call() {
     this.taps.forEach(tap => tap());
   }
 }
@@ -22,7 +24,7 @@ hook.tap('some name', () => {
   console.log('some name');
 });
 hook.call();
-/* 
+/*
 function add(){}
 add.call(); */
 // webpack-dev-server memory-fs

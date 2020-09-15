@@ -1,10 +1,11 @@
-const babel = require("@babel/core");
-const types = require("babel-types");
+// const babel = require('@babel/core');
+const types = require('babel-types');
+
 const visitor = {
   ImportDeclaration: {
     enter(path, state = { opts }) {
-      const specifiers = path.node.specifiers; // [{ flatten, concat }]
-      const source = path.node.source; // lodash
+      const { specifiers } = path.node; // [{ flatten, concat }]
+      const { source } = path.node; // lodash
       if (
         state.opts.library === source.value &&
         !types.isImportDefaultSpecifier(specifiers[0])
@@ -12,7 +13,7 @@ const visitor = {
         const declarations = specifiers.map((specifier, index) => {
           return types.ImportDeclaration(
             [types.importDefaultSpecifier(specifier.local)],
-            types.stringLiteral(`${source.value}/${specifier.local.name}`)
+            types.stringLiteral(`${source.value}/${specifier.local.name}`),
           );
         });
         path.replaceWithMultiple(declarations);
@@ -21,5 +22,5 @@ const visitor = {
   },
 };
 module.exports = function (babel) {
-  return {visitor};
+  return { visitor };
 };

@@ -1,4 +1,4 @@
-/**** css运用 ****/
+/** ** css运用 *** */
 
 module.exports = function mL(source, map, meta) {
   const result = `
@@ -8,4 +8,4 @@ ${source}\`;
 document.head.appendChild(style);
   `;
   this.callback(null, result);
-}
+};

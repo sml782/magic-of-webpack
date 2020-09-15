@@ -1,4 +1,5 @@
 import React, { Component, Suspense } from 'react';
-export default props=>{
+
+export default props => {
   return <p>Title</p>;
-}
+};

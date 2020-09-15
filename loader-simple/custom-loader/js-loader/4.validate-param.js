@@ -1,4 +1,4 @@
-/**** 验证参数 ****/
+/** ** 验证参数 *** */
 const loaderUtils = require('loader-utils');
 const validateOptions = require('schema-utils');
 
@@ -17,7 +17,7 @@ module.exports = function mL(source, map, meta) {
         // 错误描述
         // description: 'total 必须是个数字',
         // instanceof: 'Number'
-      }
+      },
     },
     // 是否允许额外的属性
     additionalProperties: false,
@@ -33,11 +33,11 @@ module.exports = function mL(source, map, meta) {
     //   if (error.keyword === 'type') {
     //     return `${formattedError}\nAdditional Information.`;
     //   }
-  
+
     //   return formattedError;
     // }
-  }
+  };
   const options = loaderUtils.getOptions(this);
   validateOptions(schema, options, configuration);
   this.callback(null, source);
-}
+};

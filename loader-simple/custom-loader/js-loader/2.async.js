@@ -1,4 +1,4 @@
-/**** 异步返回 ****/
+/** ** 异步返回 *** */
 
 // {string} source
 // {} map sourceMap 源代码映射
@@ -12,7 +12,7 @@ module.exports = function mL(source, map, meta) {
   // return source;
 
   setTimeout(() => {
-    const result = source + '\n\'这是异步产生的!\'';
+    const result = `${source }\n'这是异步产生的!'`;
     callback(null, result);
   }, 1000);
-}
+};

@@ -18,9 +18,7 @@ const moduleFileExtensions = [
 // 解析模块路径  './title.js' resolveFn? 从相对路径得到绝对路径
 const resolveModule = (resolveFn, filePath) => {
   // js
-  const extension = moduleFileExtensions.find(extension =>
-    fs.existsSync(resolveFn(`${filePath}.${extension}`))
-  );
+  const extension = moduleFileExtensions.find(ext => fs.existsSync(resolveFn(`${filePath}.${ext}`)));
 
   if (extension) {
     return resolveFn(`${filePath}.${extension}`); // ./title.js

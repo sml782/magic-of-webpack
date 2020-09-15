@@ -1,4 +1,4 @@
-const { SyncHook } = require("tapable");
+const { SyncHook } = require('tapable');
 const fs = require('fs');
 const path = require('path');
 
@@ -10,11 +10,11 @@ class Compiler {
     this.options = options;
     this.hooks = {
       run: new SyncHook(),
-      done: new SyncHook()
-    }
+      done: new SyncHook(),
+    };
   }
 
-  run(){
+  run() {
     const modules = [];
     const chunks = [];
     const files = [];
@@ -71,7 +71,7 @@ class Compiler {
     // 在确定好输出内容后，根据配置确定输出的路径和文件名，把文件内容写入到文件系统
     const outputPath = path.join(
       this.options.output.path,
-      this.options.output.filename
+      this.options.output.filename,
     );
     fs.writeFileSync(outputPath, file.source, 'utf8');
     // 在以上过程中，Webpack 会在特定的时间点广播出特定的事件，插件在监听到感兴趣的事件后会执行特定的逻辑，
@@ -87,7 +87,7 @@ const options = require('./webpack.config');
 // 开始编译：用上一步得到的参数初始化Compiler对象
 const compiler = new Compiler(options);
 // 加载所有配置的插件，执行对象的run方法开始执行编译
-if (options.plugins&& Array.isArray(options.plugins)) {
+if (options.plugins && Array.isArray(options.plugins)) {
   for (const plugin of options.plugins) {
     plugin.apply(compiler);
   }
@@ -95,7 +95,7 @@ if (options.plugins&& Array.isArray(options.plugins)) {
 // 确定入口：根据配置中的entry找出所有的入口文件
 compiler.run();
 // es6编译成es5
-function babelLoader(source){
+function babelLoader(source) {
   return `
 var sum = function sum(a, b){
   return a + b;

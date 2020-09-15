@@ -4,16 +4,17 @@ const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware
 const ignoredFiles = require('react-dev-utils/ignoredFiles');
 const redirectServedPath = require('react-dev-utils/redirectServedPathMiddleware');
 const paths = require('./paths');
+
 const host = process.env.HOST || '0.0.0.0';
 
-module.exports = function(proxy, allowedHost) {
+module.exports = function (proxy, allowedHost) {
   return {
     // 禁用主机检查
     disableHostCheck: true,
     // 启动gzip压缩
     compress: true,
     // 禁用WebpackDevServer自己的日志,警告和错误还是可以显示的
-    clientLogLevel: "none",
+    clientLogLevel: 'none',
     // 静态文件根目录
     contentBase: paths.appPublic,
     contentBasePublicPath: paths.publicUrlOrPath,
@@ -22,7 +23,7 @@ module.exports = function(proxy, allowedHost) {
     // 启用热更新
     hot: true,
     // 使用ws而非socketjs-node模块
-    transportMode: "ws",
+    transportMode: 'ws',
     // 不需要注入WS客户端
     injectClient: false,
     // 访问路径
@@ -47,7 +48,7 @@ module.exports = function(proxy, allowedHost) {
       app.use(evalSourceMapMiddleware(server));
       // 让我们从运行时错误打开文件
       app.use(errorOverlayMiddleware());
-      // 由于代理注册的中间件 
+      // 由于代理注册的中间件
       if (fs.existsSync(paths.proxySetup)) {
         require(paths.proxySetup)(app);
       }

@@ -1,4 +1,4 @@
-/**** less编译 ****/
+/** ** less编译 *** */
 const less = require('less');
 
 module.exports = function mL(source, map, meta) {
@@ -18,11 +18,11 @@ module.exports = function mL(source, map, meta) {
   // Promise 形式
   less.render(source)
     .then(({ css, map, imports }) => {
-      console.log({ css, map, imports })
+      console.log({ css, map, imports });
       const cMap = typeof map === 'string' ? JSON.parse(map) : map;
       callback(null, css, cMap);
     })
     .catch(error => {
       callback(error);
     });
-}
+};

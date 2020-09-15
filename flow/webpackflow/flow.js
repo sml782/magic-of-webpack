@@ -10,8 +10,9 @@ class Compiler {
       done: new SyncHook(),
     };
   }
+
   run() {
-    this.hooks.run.call();  
+    this.hooks.run.call();
     const modules = [];
     const chunks = [];
     const files = [];
@@ -32,7 +33,7 @@ class Compiler {
     const chunk = { name: 'main', modules };
     chunks.push(chunk);
     // 再把每个Chunk转换成一个单独的文件加入到输出列表
-    let file = {
+    const file = {
       file: this.options.output.filename,
       source: `
 (function (modules) {
@@ -62,10 +63,10 @@ class Compiler {
     // 在确定好输出内容后，根据配置确定输出的路径和文件名，把文件内容写入到文件系统
     const outputPath = path.join(
       this.options.output.path,
-      this.options.output.filename
+      this.options.output.filename,
     );
-    fs.writeFileSync(outputPath, file.source,'utf8');
-    this.hooks.done.call();  
+    fs.writeFileSync(outputPath, file.source, 'utf8');
+    this.hooks.done.call();
   }
 }
 

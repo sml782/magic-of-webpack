@@ -2,15 +2,15 @@ const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
 // 一般可能是production或者development set NODE_ENV=development
-const NODE_ENV = process.env.NODE_ENV;
+const { NODE_ENV } = process.env;
 
 // 环境变量的文件路径
 const dotenvFiles = [
   `${paths.dotenv}.${NODE_ENV}.local`, // .env.development.local
-  `${paths.dotenv}.${NODE_ENV}`,       // .env.development
+  `${paths.dotenv}.${NODE_ENV}`, // .env.development
   // 在测试环境下不要包括.env.local
   NODE_ENV !== 'test' && `${paths.dotenv}.local`, // .env.local
-  paths.dotenv,// .env
+  paths.dotenv, // .env
 ].filter(Boolean);
 
 // 从.env*文件中加载环境变量
@@ -20,7 +20,7 @@ dotenvFiles.forEach(dotenvFile => {
     require('dotenv-expand')(
       require('dotenv').config({
         path: dotenvFile,
-      })
+      }),
     );
   }
 });
@@ -48,14 +48,14 @@ function getClientEnvironment(publicUrl) {
       },
       {
         // 决定当前是否处于开发模式
-        NODE_ENV: process.env.NODE_ENV || "development",
+        NODE_ENV: process.env.NODE_ENV || 'development',
         // 用来解析处于public下面的正确资源路径
         PUBLIC_URL: publicUrl,
-      }
+      },
     );
   // 把所有的值转成字符串以便在DefinePlugin中使用
   const stringified = {
-    "process.env": Object.keys(raw).reduce((env, key) => {
+    'process.env': Object.keys(raw).reduce((env, key) => {
       env[key] = JSON.stringify(raw[key]);
       return env;
     }, {}),

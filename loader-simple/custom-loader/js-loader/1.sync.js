@@ -1,4 +1,4 @@
-/**** 同步返回 ****/
+/** ** 同步返回 *** */
 
 // {string} source
 // {} map sourceMap 源代码映射
@@ -18,4 +18,4 @@ module.exports = function mL(source, map, meta) {
   //   meta?: any // 可选参数，返回meta
   // );
   this.callback(null, source);
-}
+};

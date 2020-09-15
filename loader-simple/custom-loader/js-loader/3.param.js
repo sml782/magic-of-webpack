@@ -1,4 +1,4 @@
-/**** 获得参数 ****/
+/** ** 获得参数 *** */
 const loaderUtils = require('loader-utils');
 
 // {string} source
@@ -20,4 +20,4 @@ module.exports = function mL(source, map, meta) {
 
   const result = source.replace(/\{\{\s*title\s*\}\}/, title);
   this.callback(null, result);
-}
+};

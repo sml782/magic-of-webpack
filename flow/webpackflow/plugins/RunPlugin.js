@@ -4,4 +4,4 @@ module.exports = class RunPlugin {
       console.log('RunPlugin');
     });
   }
-}
+};
