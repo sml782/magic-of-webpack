@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = function (grunt) {
   // 1.加载 babel任务
   grunt.loadNpmTasks('grunt-babel');
