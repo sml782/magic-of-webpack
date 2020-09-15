@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const parser = require('@babel/parser');
-const core = require("@babel/core");
+const core = require('@babel/core');
 const traverse = require('@babel/traverse').default;
 
 class Webpack {
@@ -52,13 +52,13 @@ class Webpack {
     const dirName = path.dirname(filepath);
     const dependencies = {};
     traverse(parsedAst, {
-      ImportDeclaration ({ node }) {
+      ImportDeclaration({ node }) {
         const depPath = node.source.value;
         const resolvePath = `./${path.join(dirName, depPath)}`;
         dependencies[depPath] = resolvePath;
-      }
+      },
     });
-    
+
     const { code, map, ast } = core.transformFromAstSync(parsedAst, null, {
       presets: ['@babel/preset-env'],
     });
@@ -102,7 +102,7 @@ class Webpack {
 
     const writeStream = fs.createWriteStream(outputFile, { encoding: 'utf8', flags: 'w' });
     writeStream.write(bundleEntry, 'utf8', () => {
-      console.log('打包构建完成')
+      console.log('打包构建完成');
     });
   }
 
