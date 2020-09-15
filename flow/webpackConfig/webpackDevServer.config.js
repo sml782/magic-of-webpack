@@ -43,6 +43,7 @@ module.exports = function(proxy, allowedHost) {
     public: allowedHost,
     // proxy会在before和after之间执行
     proxy,
+    // port: 3000,
     before(app, server) {
       // 在出错的时候获取源码内容
       app.use(evalSourceMapMiddleware(server));

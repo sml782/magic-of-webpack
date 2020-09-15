@@ -193,6 +193,8 @@ module.exports = function (webpackEnv) {
       // 重新安装模块后不用重新启动开发服务器
       isEnvDevelopment &&
         new WatchMissingNodeModulesPlugin(paths.appNodeModules),
+      // 热更新给的是 文件名 而不是 模块id
+      isEnvDevelopment && new webpack.NamedModulesPlugin(),
       // 提取CSS
       isEnvProduction &&
         new MiniCssExtractPlugin({
