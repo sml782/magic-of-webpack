@@ -1,6 +1,6 @@
 const qiniu = require("qiniu");
 const path = require("path");
-//https://developer.qiniu.com/kodo/sdk/1289/nodejs
+// https://developer.qiniu.com/kodo/sdk/1289/nodejs
 require("dotenv").config();
 const defaultAccessKey = process.env.accessKey;
 const defaultSecretKey = process.env.secretKey;
@@ -9,11 +9,11 @@ class UploadPlugin {
     this.options = options || {};
   }
   apply(compiler) {
-    //在webpack把产出的文件写入硬盘后
+    // 在webpack把产出的文件写入硬盘后
     compiler.hooks.afterEmit.tap("UploadPlugin", (compilation) => {
-      //把本次编译产出的文件上传到七牛上
+      // 把本次编译产出的文件上传到七牛上
       let assets = compilation.assets;
-      //html不需要强缓存的,是需要放在自己的服务器上,不需要缓存,
+      // html不需要强缓存的,是需要放在自己的服务器上,不需要缓存,
       let promises = Object.keys(assets).filter(item=>!item.includes('.html')).map(this.upload.bind(this));
       Promise.all(promises).then((err, data) => console.log(err, data));
     });
