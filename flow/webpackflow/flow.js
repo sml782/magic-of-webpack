@@ -1,5 +1,3 @@
-'use strict';
-
 const fs = require('fs');
 const path = require('path');
 const { SyncHook } = require('tapable');
@@ -81,7 +79,7 @@ if (options.plugins && Array.isArray(options.plugins)) {
     plugin.apply(compiler);
   }
 }
-//4.执行对象的run方法开始执行编译
+// 4.执行对象的run方法开始执行编译
 compiler.run();
 
 function babelLoader(source) {

@@ -1,5 +1,3 @@
-'use strict';
-
 const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
@@ -16,7 +14,7 @@ const dotenvFiles = [
 ].filter(Boolean);
 
 // 从.env*文件中加载环境变量
-process.env.username;
+// process.env.username;
 dotenvFiles.forEach(dotenvFile => {
   if (fs.existsSync(dotenvFile)) {
     require('dotenv-expand')(

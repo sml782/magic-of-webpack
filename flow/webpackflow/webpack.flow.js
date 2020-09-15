@@ -1,7 +1,6 @@
-'use strict';
-
 const { SyncHook } = require("tapable");
 const fs = require('fs');
+const path = require('path');
 
 /**
  * webpack的工作流程
@@ -23,7 +22,7 @@ class Compiler {
     // 根据配置中的entry找出所有的入口文件
     const entry = path.join(this.options.context, this.options.entry);
     // 从入口文件出发，调用所有配置的Loader对模块进行编译，再找出该模块依赖的模块，
-    //再递归本步骤直到所有入口依赖的文件都经过了本步骤的处理；
+    // 再递归本步骤直到所有入口依赖的文件都经过了本步骤的处理；
     // 1.读取模块内容
     // const sum = (a, b) => a + b; const title = require('./title');
     const entryContent = fs.readFileSync(entry, 'utf8');

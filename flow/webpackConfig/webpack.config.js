@@ -1,10 +1,8 @@
-'use strict';
-
 const webpack = require("webpack");
 const paths = require("./paths");
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-const PnpWebpackPlugin = require("pnp-webpack-plugin");
+// const PnpWebpackPlugin = require("pnp-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -19,7 +17,7 @@ const cssRegex = /\.css$/;
 const sassRegex = /\.(scss|sass)$/;
 module.exports = function (webpackEnv) {
   console.log("webpackEnv", webpackEnv); // webpackEnv production
-  process.env;
+  // process.env;
   // 开发环境
   const isEnvDevelopment = webpackEnv === "development"; // false
   // 生产环境

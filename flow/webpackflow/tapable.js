@@ -3,8 +3,6 @@
  * button.trigger('click');
  */
 
-'use strict';
-
 // const { SyncHook } = require('tapable');
 
 class SyncHook{
