@@ -4,15 +4,33 @@ const SpeedMeasureWebpackPlugin = require("speed-measure-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const DllReferencePlugin = require("webpack/lib/DllReferencePlugin.js");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-var HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
+const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const notifier = require('node-notifier');
+
+notifier.notify('这里是通知吗？');
+
+notifier.notify(
+  {
+    title: 'My awesome title',
+    message: 'Hello from node, Mr. User!',
+    icon: '/Users/a666/Desktop/favicon.ico', // Absolute path (doesn't work on balloons)
+    sound: true, // Only Notification Center or Windows Toasters
+    wait: true // Wait with callback, until user action is taken against notification, does not apply to Windows Toasters as they always wait or notify-send as it does not support the wait option
+  },
+  function (err, response) {
+    // Response is response from notification
+  }
+);
+
+
 const smw = new SpeedMeasureWebpackPlugin();
 const bootstrap = path.resolve(
   __dirname,
   "node_modules/bootstrap/dist/css/bootstrap.css"
 );
-//module.exports = smw.wrap({
-module.exports = {
+module.exports = smw.wrap({
+// module.exports = {
   mode: "development", // 开发模式
   devtool: false, // 不生成 sourcemap
   entry: "./src/index.js", // 入口文件
@@ -90,4 +108,5 @@ module.exports = {
     new HardSourceWebpackPlugin(),
   ],
   devServer: {},
-};
+// };
+});
