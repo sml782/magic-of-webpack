@@ -1,11 +1,15 @@
 module.exports = {
+  // extends: [
+  //   'alloy',
+  //   'alloy/react',
+  // ],
   extends: [
-    'alloy',
-    'alloy/react',
+    'eslint-config-ali/react',
+    'eslint-config-ali/jsx-a11y',
   ],
-  plugins: [
-    'react',
-  ],
+  // plugins: [
+  //   'react',
+  // ],
   env: {
     browser: true,
     node: true,
@@ -19,6 +23,6 @@ module.exports = {
   },
   rules: {
     // Customize your rules
-    
+
   },
 };
