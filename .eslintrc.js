@@ -23,6 +23,17 @@ module.exports = {
   },
   rules: {
     // Customize your rules
-
+    // 强制行注释的位置
+    // 'line-comment-position': [2, { position: 'above' }],
+    // 强制注释周围有空行
+    // 'lines-around-comment': [
+    //   2,
+    //   {
+    //     // 要求在行级注释之前有一空行
+    //     beforeLineComment: true,
+    //     // 要求在块级注释之前有一空行
+    //     beforeBlockComment: true,
+    //   }
+    // ]
   },
 };
