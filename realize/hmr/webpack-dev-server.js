@@ -4,6 +4,7 @@ const Express = require('express');
 const mime = require('mime');
 const webpack = require('webpack');
 const config = require('./webpack.config');
+
 // 配置对象
 const compiler = webpack(config);
 // 1. 创建webpack实例

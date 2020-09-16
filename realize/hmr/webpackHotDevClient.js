@@ -1,6 +1,6 @@
-const io = require('socket.io');
+// const io = require('socket.io');
 
-const socket = io('/'); // 先通过socket.io连接服务器
+const socket = window.io('/'); // 先通过socket.io连接服务器
 let currentHash; // 当前的hash
 let lastHash; // 上一次的hash
 const onConnected = () => {
@@ -15,15 +15,17 @@ const onConnected = () => {
   });
   socket.on('disconnect', () => {
     currentHash = null;
-    lastHash = currentHash = null;
+    lastHash = currentHash;
   });
 };
 // 8.执行hotCheck方法进行更新
 function hotCheck() {
   // debugger;
   if (!lastHash || lastHash === currentHash) {
-    return (lastHash = currentHash);
+    lastHash = currentHash;
+    return lastHash;
   }
+  debugger;
   // 9.向 server 端发送 Ajax 请求，服务端返回一个hot-update.json文件，该文件包含了所有要更新的模块的 `hash` 值和chunk名
   hotDownloadManifest().then((update) => {
     const chunkIds = Object.keys(update.c);// ['main']
@@ -37,11 +39,11 @@ function hotCheck() {
 function hotDownloadUpdateChunk(chunkId) {
   const script = document.createElement('script');
   script.charset = 'utf-8';
-  script.src = `/${ chunkId }.${ lastHash }.hot-update.js`;
+  script.src = `/${chunkId}.${lastHash}.hot-update.js`;
   document.head.appendChild(script);
 }
 function hotDownloadManifest() {
-  const url = `/${ lastHash }.hot-update.json`;
+  const url = `/${lastHash}.hot-update.json`;
   return fetch(url).then(res => res.json()).catch(error => { console.log(error); });
 }
 // 11. 补丁JS取回来后会调用`webpackHotUpdate`方法
