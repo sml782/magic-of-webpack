@@ -3,7 +3,7 @@ const fs = require('fs');
 const { runLoaders } = require('loader-runner');
 
 const loaderDir = path.resolve(__dirname, 'loaders');
-const request = 'inline-loader1!inline-loader2!./index.js';
+const request = '-!inline-loader1!inline-loader2!./index.js';
 // 最前面的前缀去掉,多个!合并成一个
 let inlineLoaders = request
   .replace(/^-?!+/, '')
@@ -36,9 +36,9 @@ let normalLoaders = [];
 for (let i = 0; i < rules.length; i++) {
   const rule = rules[i];
   if (rule.test.test(resource)) {
-    if (rule.enforce == 'pre') {
+    if (rule.enforce === 'pre') {
       preLoaders.push(...rule.use);
-    } else if (rule.enforce == 'post') {
+    } else if (rule.enforce === 'post') {
       postLoaders.push(...rule.use);
     } else {
       normalLoaders.push(...rule.use);
