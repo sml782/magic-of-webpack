@@ -25,7 +25,7 @@ function hotCheck() {
     lastHash = currentHash;
     return lastHash;
   }
-  debugger;
+
   // 9.向 server 端发送 Ajax 请求，服务端返回一个hot-update.json文件，该文件包含了所有要更新的模块的 `hash` 值和chunk名
   hotDownloadManifest().then((update) => {
     const chunkIds = Object.keys(update.c);// ['main']
@@ -38,7 +38,6 @@ function hotCheck() {
 
 function hotDownloadUpdateChunk(chunkId) {
   const script = document.createElement('script');
-  script.charset = 'utf-8';
   script.src = `/${chunkId}.${lastHash}.hot-update.js`;
   document.head.appendChild(script);
 }
@@ -50,7 +49,7 @@ function hotDownloadManifest() {
 window.webpackHotUpdate = (chunkId, moreModules) => {
   for (const moduleId in moreModules) {
     const oldModule = __webpack_require__.c[moduleId]; // 获取老模块
-    const { parents } = oldModule; // 父亲们 儿子们
+    const { parents, children = [] } = oldModule; // 父亲们 儿子们
     const module = (__webpack_require__.c[moduleId] = {
       i: moduleId,
       exports: {},
