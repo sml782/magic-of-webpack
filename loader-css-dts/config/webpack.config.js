@@ -353,7 +353,7 @@ module.exports = function (webpackEnv) {
       ],
     },
     resolveLoader: {
-      modules: ['node_modules', path.resolve(__dirname, '../loader')],
+      modules: [path.resolve(__dirname, '../loader'), 'node_modules'],
       plugins: [
         // Also related to Plug'n'Play, but this time it tells webpack to load its loaders
         // from the current package.

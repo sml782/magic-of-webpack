@@ -74,7 +74,7 @@
     "workbox-webpack-plugin": "5.1.4"
   },
   "scripts": {
-    "start": "node --inspect-brk=9000 scripts/start.js",
+    "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },
@@ -97,6 +97,7 @@
     ]
   },
   "devDependencies": {
+    "css-modules-typescript-loader": "^4.0.1",
     "line-diff": "^2.1.1",
     "node-sass": "^5.0.0",
     "react-app-rewired": "^2.1.8"

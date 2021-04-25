@@ -14,7 +14,8 @@
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "${workspaceFolder}/loader-css-dts/scripts/start.js"
+      "program": "${workspaceFolder}/loader-css-dts/scripts/start.js",
+      "cwd": "${workspaceFolder}/loader-css-dts"
     }
   ]
 }
