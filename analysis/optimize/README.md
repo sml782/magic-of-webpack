@@ -120,6 +120,25 @@ module.exports = {
      }
 }
 ```
+```js
+// 所有文件都有副作用，全都不可 tree-shaking
+{
+ "sideEffects": true
+}
+
+// 没有文件有副作用，全都可以 tree-shaking，即告知 webpack，它可以安全地删除未用到的 export。
+{
+ "sideEffects": false
+}
+
+// 除了数组中包含的文件外有副作用，所有其他文件都可以 tree-shaking，但会保留符合数组中条件的文件
+{
+ "sideEffects": [
+   "*.css",
+   "*.less"
+ ]
+}
+```
 
 ## 7. Scope Hoisting
 - Scope Hoisting 可以让 Webpack 打包出来的代码文件更小、运行的更快， 它又译作 "作用域提升"，是在 Webpack3 中新推出的功能。

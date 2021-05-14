@@ -1,7 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const PurgecssPlugin = require('purgecss-webpack-plugin');
-// const TerserPlugin = require('terser-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 // const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -13,14 +13,15 @@ const PATHS = {
   src: path.join(__dirname, 'src'),
 };
 module.exports = {
-  mode: 'development',
+  // mode: 'development',
+  mode: 'production',
   devtool: false,
   context: process.cwd(),
   // entry: './src/index.js',
   entry: {
     page1: './src/page1.js',
-    page2: './src/page2.js',
-    page3: './src/page3.js',
+    // page2: './src/page2.js',
+    // page3: './src/page3.js',
   },
   // entry: {
   //   main: './src/index.js',
@@ -33,13 +34,16 @@ module.exports = {
     // publicPath: 'http://img.zhufengpeixun.cn/',
   },
   optimization: {
+    usedExports: true,
     minimize: true,
+    // 也可以放在这个
+    // sideEffects: false,
     minimizer: [
       // 压缩JS
-      // new TerserPlugin({
-      //   sourceMap: false,
-      //   extractComments: false,
-      // }),
+      new TerserPlugin({
+        sourceMap: true,
+        extractComments: false,
+      }),
       // 压缩CSS
       // new OptimizeCSSAssetsPlugin({}),
     ],
@@ -69,9 +73,9 @@ module.exports = {
       },
     },
     // 为了长期缓存保持运行时代码块是单独的文件
-    /*  runtimeChunk: {
+    runtimeChunk: {
       name: (entrypoint) => `runtime-${entrypoint.name}`,
-    }, */
+    },
   },
   module: {
     rules: [

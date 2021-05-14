@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --config webpack.config.js",
     "start": "webpack-dev-server --progress",
     "generateAnalyzFile": "webpack --profile --json > stats.json",
     "analyz": "webpack-bundle-analyzer --port 8888 ./dist/stats.json"
   },
+  "sideEffects": false,
   "keywords": [],
   "author": "",
   "license": "ISC",
