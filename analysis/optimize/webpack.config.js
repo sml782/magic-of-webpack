@@ -1,4 +1,5 @@
 const path = require('path');
+// const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const PurgecssPlugin = require('purgecss-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -13,8 +14,8 @@ const PATHS = {
   src: path.join(__dirname, 'src'),
 };
 module.exports = {
-  // mode: 'development',
-  mode: 'production',
+  mode: 'development',
+  // mode: 'production',
   devtool: false,
   context: process.cwd(),
   // entry: './src/index.js',
@@ -40,10 +41,10 @@ module.exports = {
     // sideEffects: false,
     minimizer: [
       // 压缩JS
-      new TerserPlugin({
-        sourceMap: true,
-        extractComments: false,
-      }),
+      // new TerserPlugin({
+      //   sourceMap: true,
+      //   extractComments: false,
+      // }),
       // 压缩CSS
       // new OptimizeCSSAssetsPlugin({}),
     ],
